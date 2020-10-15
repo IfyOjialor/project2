@@ -1,0 +1,209 @@
+---
+title: "Project 2"
+author: "Ifeoma Ojialor"
+date: "10/16/2020"
+output:
+  rmarkdown::github_document: default
+params:
+  days: 1
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(ggplot2)
+library(corrplot)
+library(caret)
+library(rmarkdown)
+library(dplyr)
+```
+
+
+## Introduction
+In this project, we will use a bike-sharing dataset to create machine learning models. Before moving forward, I will briefly explain the bike-sharing system and how it works. A bike-sharing system is a service in which users can rent/use bicycles on a short term basis for a fee. The goal of these programs is to provide affordable access to bicycles for short distance trips as opposed to walking or taking public transportation. Imagine how many people use these systems on a given day, the numbers can vary greatly based on some elements. The goal of this project is to build a predictive model to find out the number of people that use these  bikes in a given time period using available information about that time/day. This in turn, can help businesses that oversee this systems to manage them in a cost efficient manner.  
+We will be using the bike-sharing dataset from the UCL Machine Learning Repository. We will use the regression and boosted tree method to model the response variable `cnt`.
+
+## Exploratory Data Analysis
+
+First we will read in the data using a relative path. 
+```{r read_csv}
+#read in data and filter to desired weekday
+day1 <- read.csv("Bike-Sharing-Dataset/day.csv")
+head(day1,5)
+```
+
+Next, we will remove the *casual* and *registered* variables since the `cnt` variable is a combination of both.
+
+```{r var}
+day1 <- select(day1, -casual, -registered) 
+day <- filter(day1, weekday == params$days)
+
+#Check for missing values
+miss <- data.frame(apply(day,2,function(x){sum(is.na(x))}))
+names(miss)[1] <- "missing"
+miss
+```
+
+There are no missing values in the dataset, so we can continue with our analysis.
+
+```{r format}
+#Change the variables into their appropriate format.
+day$season <- as.factor(day$season)
+day$weathersit <- as.factor(day$weathersit)
+day$holiday <- as.factor(day$holiday)
+day$workingday <- as.factor(day$workingday)
+day$weekday <- as.factor(day$weekday)
+day$yr <- as.factor(day$yr)
+day$mnth <- as.factor(day$mnth)
+levels(day$season) <- c("winter", "spring", "summer", "fall")
+levels(day$yr) <- c("2011", "2012")
+str(day)
+```
+
+
+### Univariate Analysis
+
+The `cnt` is the response variable, so we'll use a histogram to get a visual understanding of the variable.
+
+```{r cnt}
+ggplot(day, aes(x = cnt)) + theme_bw() + geom_histogram(aes(y =..density..), color = "black", fill = "white", binwidth = 1000) + geom_density(alpha = 0.2, fill = "blue") + labs(title = "Count Density", x = "Count", y = "Density")
+summary(day$cnt)
+```
+
+From the histogram and summary statistics output, it is pretty evident that the count of total rental bikes are in the sub 5000 range. We will investigate if there is a relationship between the response variable and other relevant predictor variables in the next section. Lets look at the other variables individually.
+
+```{r EDA_num}
+#visualize numeric predictor variables using a histogram
+p1 <- ggplot(day) + geom_histogram(aes(x = temp), fill = "red", binwidth = 0.03)
+p2 <- ggplot(day) + geom_histogram(aes(x = atemp), fill = "red", binwidth = 0.03)
+p3 <- ggplot(day) + geom_histogram(aes(x = hum), fill = "red", binwidth = 0.025)
+p4 <- ggplot(day) + geom_histogram(aes(x = windspeed), fill = "red", binwidth = 0.03)
+gridExtra::grid.arrange(p1,p2,p3,p4, nrow = 2)
+```
+Observations:
+* No clear cut pattern in `temp`and `atemp`.
+
+* `hum` appears to be skewed to the left when the dataset is not filtered to a specific weekday.
+
+* `windspeed` appears to be skewed(right). This variable should be transformed to curb its skewness.
+
+* The distribution of `temp` and `atemp` looks very similar. We should think about taking out one of the variables.
+
+```{r EDA_cat}
+#visualize categorical predictor variables
+h1 <- ggplot(day) + geom_bar(aes(x = season),fill = "pink")
+h2 <- ggplot(day) + geom_bar(aes(x = yr),fill = "pink")
+h3 <- ggplot(day) + geom_bar(aes(x = holiday),fill = "pink")
+h4 <- ggplot(day) + geom_bar(aes(x = workingday),fill = "pink")
+h5 <- ggplot(day) + geom_bar(aes(x = mnth),fill = "pink")
+h6 <- ggplot(day) + geom_bar(aes(x = weathersit),fill = "pink")
+gridExtra::grid.arrange(h1,h2,h3,h4,h5,h6, nrow = 3)
+```
+
+Observations:
+* The variation between the four seasons is little to none.
+
+* About the same number of people rode bikes in 2011 and 2012.
+
+* Many people rode bikes on days that are not holidays.
+
+* Most people used the bike-sharing system on days that were neither weekends nor holidays.
+
+* Most people used the bike sharing system on days with clear weather.
+
+### Bi-variate Analysis
+
+In this section, we will explore the predictor variables with respect to the response variable. The objective is to discover hidden relationships between the independent and response variables and use those findings in the model building process.
+
+```{r bi_var_num}
+# First, we will explore the relationship between the target and numerical variables.
+p1 <- ggplot(day) +geom_point(aes(x = temp, y = cnt), colour = "violet") + labs(title = "Normalized Temperature vs Total Rental Bikes")
+p2 <- ggplot(day) +geom_point(aes(x = atemp, y = cnt), colour = "#FF99CC") +labs(title = "Normalized Feeling Temperature vs Total Rental Bikes")
+p3 <- ggplot(day) +geom_point(aes(x = hum, y = cnt), colour = "pink") + labs(title = "Normalized Humidity vs Total rental Bikes")
+p4 <- ggplot(day) +geom_point(aes(x = windspeed, y = cnt), colour = "#FF66CC") +labs(title= "Normalized Windspeed vs Total rental Bikes")
+gridExtra::grid.arrange(p1, p2, p3, p4, nrow = 2)
+```
+
+Observations:
+* There appears to be a positive linear relationship between `cnt` , `temp`, and `atemp`.
+
+* There is also a weak relationship between `cnt`, `hum`, and `windspeed`.
+
+```{r bivar_cat}
+# Now we'll visualize the relationship between the target and categorical variables.
+# Instead of using a boxplot, I will use a violin plot which is the blend of both a boxplot and density plot
+g1 <- ggplot(day) + geom_col(aes(x = yr, y = cnt, fill = season))+theme_bw()
+g2 <- ggplot(day) + geom_violin(aes(x = yr, y = cnt))+theme_bw()
+g3 <- ggplot(day) + geom_col(aes(x = mnth, y = cnt, fill = season))+theme_bw() 
+g4 <- ggplot(day) + geom_col(aes(x = holiday, y = cnt, fill = season)) + theme_bw() 
+g6 <- ggplot(day) + geom_col(aes(x = workingday, y = cnt, fill = season))
+g7 <- ggplot(day) + geom_col(aes(x = weathersit, y = cnt, fill = season))
+gridExtra::grid.arrange(g1, g2, g3, nrow = 2)
+gridExtra::grid.arrange(g4, g6, g7, nrow = 2)
+```
+Observations:
+* The total bike rental count is higher in 2012 than 2011.
+
+* During workingday, the bike rental counts quite the highest compared to during no working day for different seasons.
+
+* During clear,partly cloudy weather, the bike rental count is highest and the second highest is during mist cloudy weather and followed by third highest during light snow and light rain weather.
+
+* The highest bike rental count was during the summer and lowest in the winter.
+
+## Correlation Matrix
+Correlation matrix helps us to understand the linear relationship between variables.
+
+```{r corr}
+day_c <- day[ , c(10:14)]
+round(cor(day_c), 2)
+```
+
+From the above matrix, we can see that `temp` and `atemp` are highly correlated. So we only need to include one of these variables in the model to prevent multicollinearity. We will also transform the humidity and windspeed variable.
+
+```{r}
+day <- mutate(day, log_hum = log(day$hum+1))
+day <- mutate(day, log_ws = log(day$windspeed + 1))
+
+#Remove irrelevant variables
+day <- select(day, -weekday,-holiday,-workingday,-dteday,-temp, -instant)
+
+```
+
+## Model Building
+
+First we split the data into train and test sets.
+```{r data_split}
+set.seed(23)
+dayIndex<- createDataPartition(day$cnt, p = 0.7, list=FALSE)
+dayTrain <- day[dayIndex, ]
+dayTest <- day[-dayIndex, ]
+
+# Build a tree-based model using loocv;
+fitTree <- train(cnt~ ., data = dayTrain, method = "rpart", 
+              preProcess = c("center", "scale"), 
+              trControl = trainControl(method = "loocv", number = 10), tuneGrid = NULL)
+
+# Display information from the tree fit
+fitTree$results
+
+# Build a boosted tree model using cv
+fitBoost <- train(cnt~., data = dayTrain, method = "gbm", 
+              preProcess = c("center", "scale"), 
+              trControl = trainControl(method = "cv", number = 10), 
+              tuneGrid = NULL)
+
+# Display information from the boost fit
+fitBoost$results
+```
+
+Now, we make predictions on the test data sets using the best model fits. Then we compare RMSE to determine the best model.
+```{r predict}
+predTree <- predict(fitTree, newdata = select(dayTest, -cnt))
+postResample(predTree, dayTest$cnt)
+
+boostPred <- predict(fitBoost, newdata = select(dayTest, -cnt))
+postResample(boostPred, dayTest$cnt)
+
+```
+
+When we compare the two models, the boosted tree model have lower RMSE values when applied on the test dataset. 
