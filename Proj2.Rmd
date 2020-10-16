@@ -80,7 +80,9 @@ p3 <- ggplot(day) + geom_histogram(aes(x = hum), fill = "red", binwidth = 0.025)
 p4 <- ggplot(day) + geom_histogram(aes(x = windspeed), fill = "red", binwidth = 0.03)
 gridExtra::grid.arrange(p1,p2,p3,p4, nrow = 2)
 ```
-Observations:
+
+
+Observations:  
 * No clear cut pattern in `temp`and `atemp`.
 
 * `hum` appears to be skewed to the left when the dataset is not filtered to a specific weekday.
@@ -100,7 +102,8 @@ h6 <- ggplot(day) + geom_bar(aes(x = weathersit),fill = "pink")
 gridExtra::grid.arrange(h1,h2,h3,h4,h5,h6, nrow = 3)
 ```
 
-Observations:
+
+Observations:  
 * The variation between the four seasons is little to none.
 
 * About the same number of people rode bikes in 2011 and 2012.
@@ -124,7 +127,7 @@ p4 <- ggplot(day) +geom_point(aes(x = windspeed, y = cnt), colour = "#FF66CC") +
 gridExtra::grid.arrange(p1, p2, p3, p4, nrow = 2)
 ```
 
-Observations:
+Observations:  
 * There appears to be a positive linear relationship between `cnt` , `temp`, and `atemp`.
 
 * There is also a weak relationship between `cnt`, `hum`, and `windspeed`.
@@ -141,7 +144,7 @@ g7 <- ggplot(day) + geom_col(aes(x = weathersit, y = cnt, fill = season))
 gridExtra::grid.arrange(g1, g2, g3, nrow = 2)
 gridExtra::grid.arrange(g4, g6, g7, nrow = 2)
 ```
-Observations:
+Observations:  
 * The total bike rental count is higher in 2012 than 2011.
 
 * During workingday, the bike rental counts quite the highest compared to during no working day for different seasons.
@@ -150,7 +153,7 @@ Observations:
 
 * The highest bike rental count was during the summer and lowest in the winter.
 
-## Correlation Matrix
+## Correlation Matrix  
 Correlation matrix helps us to understand the linear relationship between variables.
 
 ```{r corr}
