@@ -187,7 +187,7 @@ dayTest <- day[-dayIndex, ]
 # Build a tree-based model using loocv;
 fitTree <- train(cnt~ ., data = dayTrain, method = "rpart", 
               preProcess = c("center", "scale"), 
-              trControl = trainControl(method = "loocv", number = 10), tuneGrid = NULL)
+              trControl = trainControl(method = "loocv", number = 10), tuneGrid = data.frame(cp = 0.01:0.10))
 
 # Display information from the tree fit
 fitTree$results
@@ -196,7 +196,7 @@ fitTree$results
 fitBoost <- train(cnt~., data = dayTrain, method = "gbm", 
               preProcess = c("center", "scale"), 
               trControl = trainControl(method = "cv", number = 10), 
-              tuneGrid = NULL)
+              tuneGrid = expand.grid(n.trees=c(10,20,50,100,500,1000),shrinkage=c(0.01,0.05,0.1,0.5),n.minobsinnode =c(3,5,10),interaction.depth=c(1,5,10)))
 
 # Display information from the boost fit
 fitBoost$results
