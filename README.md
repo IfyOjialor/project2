@@ -6,19 +6,19 @@ Over the past decade, bicycle-sharing systems have been growing in number and po
 
 In this project, I have performed an exploratory data analysis on the data provided by the UCL Machine Learning repository available [here] (https://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset). We used to methods to model the cnt variable: a regression tree and boosted tree model. The weekday variable was automated to include files for each weekday. The sub-documents are avaiable below;
 
-* The analysis for [Monday is available here](blob/main/1.md)
+* The analysis for [Monday is available here](1.md)
 
-* The analysis for [Tuesday is available here](blob/main/2.md)
+* The analysis for [Tuesday is available here](2.md)
 
-* The analysis for [Wednesday is available here](blob/main/3.md)
+* The analysis for [Wednesday is available here](3.md)
 
-* The analysis for [Thursday is available here](blob/main/4.md)
+* The analysis for [Thursday is available here](4.md)
 
-* The analysis for [Friday is available here](blob/main/5.md)
+* The analysis for [Friday is available here](5.md)
 
-* The analysis for [Saturday is available here](blob/main/6.md)
+* The analysis for [Saturday is available here](6.md)
 
-* The analysis for [Sunday is available here](blob/main/0.md)
+* The analysis for [Sunday is available here](0.md)
 
 Libraries required for this analysis;
 
