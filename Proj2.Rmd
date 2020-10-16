@@ -55,7 +55,6 @@ day$season <- as.factor(day$season)
 day$weathersit <- as.factor(day$weathersit)
 day$holiday <- as.factor(day$holiday)
 day$workingday <- as.factor(day$workingday)
-day$weekday <- as.factor(day$weekday)
 day$yr <- as.factor(day$yr)
 day$mnth <- as.factor(day$mnth)
 
@@ -213,4 +212,4 @@ postResample(boostPred, dayTest$cnt)
 
 ```
 
-When we compare the two models, the boosted tree model have lower RMSE values when applied on the test dataset. 
+When we compare the two models, the boosted tree model has lower RMSE values when applied on the test dataset. Hence, the boosted tree model is our final model and best model for interpreting the bike rental count on a daily basis.
