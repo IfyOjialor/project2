@@ -308,6 +308,302 @@ fitTree <- train(cnt~ ., data = dayTrain, method = "rpart",
     ## measures.
 
 ``` r
+# Build a boosted tree model using cv
+fitBoost <- train(cnt~., data = dayTrain, method = "gbm", 
+              preProcess = c("center", "scale"), 
+              trControl = trainControl(method = "cv", number = 10), 
+              tuneGrid = expand.grid(n.trees=c(10,20,50,100,500,1000),shrinkage=c(0.01,0.05,0.1,0.5),n.minobsinnode =c(3,5,10),interaction.depth=c(1,5,10)))
+```
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+    ## Warning in preProcess.default(thresh = 0.95,
+    ## k = 5, freqCut = 19, uniqueCut = 10, : These
+    ## variables have zero variances: weathersit3
+
+    ## Warning in (function (x, y, offset = NULL, misc
+    ## = NULL, distribution = "bernoulli", : variable
+    ## 17: weathersit3 has no variation.
+
+``` r
 # Display information from the tree fit
 fitTree$results
 ```
@@ -318,610 +614,314 @@ fitTree$results
     ## 1         NA 937.8054
 
 ``` r
-# Build a boosted tree model using cv
-fitBoost <- train(cnt~., data = dayTrain, method = "gbm", 
-              preProcess = c("center", "scale"), 
-              trControl = trainControl(method = "cv", number = 10), 
-              tuneGrid = expand.grid(n.trees=c(10,20),shrinkage=c(0.01,0.05),n.minobsinnode =c(3),interaction.depth=c(1,5)))
-```
-
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3481869.3341             nan     0.0100 27192.9345
-    ##      2  3452412.5499             nan     0.0100 30037.0243
-    ##      3  3417458.6348             nan     0.0100 24336.5760
-    ##      4  3383492.4472             nan     0.0100 22147.9565
-    ##      5  3353030.9822             nan     0.0100 18525.2399
-    ##      6  3321079.6915             nan     0.0100 20220.3608
-    ##      7  3299787.6087             nan     0.0100 25222.9235
-    ##      8  3279598.1247             nan     0.0100 15311.6465
-    ##      9  3259022.0947             nan     0.0100 15943.9119
-    ##     10  3233890.9583             nan     0.0100 21505.7565
-    ##     20  3007735.2960             nan     0.0100 21251.6956
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3454998.5281             nan     0.0100 56031.3861
-    ##      2  3400381.2106             nan     0.0100 54302.9141
-    ##      3  3347172.0897             nan     0.0100 56152.5723
-    ##      4  3292501.5755             nan     0.0100 60982.2687
-    ##      5  3239786.5241             nan     0.0100 35654.7096
-    ##      6  3189162.2728             nan     0.0100 48020.4682
-    ##      7  3138945.8084             nan     0.0100 41259.8228
-    ##      8  3093614.1283             nan     0.0100 37162.1577
-    ##      9  3047000.1290             nan     0.0100 33047.2277
-    ##     10  3000638.3935             nan     0.0100 40966.6324
-    ##     20  2600809.9014             nan     0.0100 22565.3178
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3360965.0699             nan     0.0500 114942.5513
-    ##      2  3230071.7231             nan     0.0500 124072.4764
-    ##      3  3123826.0142             nan     0.0500 72973.9497
-    ##      4  2991056.3940             nan     0.0500 111569.0651
-    ##      5  2892353.9425             nan     0.0500 89150.5332
-    ##      6  2799982.9460             nan     0.0500 99148.2023
-    ##      7  2697373.5921             nan     0.0500 97144.8897
-    ##      8  2674741.6728             nan     0.0500 -33449.8554
-    ##      9  2570292.7743             nan     0.0500 84745.1744
-    ##     10  2496845.0403             nan     0.0500 68024.6186
-    ##     20  1848733.6865             nan     0.0500 36141.3321
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3219489.2203             nan     0.0500 233910.3084
-    ##      2  2978803.7505             nan     0.0500 198461.2670
-    ##      3  2749556.4908             nan     0.0500 195661.7058
-    ##      4  2550955.2798             nan     0.0500 158967.0994
-    ##      5  2389254.0993             nan     0.0500 93066.2521
-    ##      6  2200671.3862             nan     0.0500 110208.6239
-    ##      7  2068740.2436             nan     0.0500 128050.4158
-    ##      8  1934802.1573             nan     0.0500 115604.6503
-    ##      9  1793310.4701             nan     0.0500 109279.2550
-    ##     10  1678699.5002             nan     0.0500 89577.4100
-    ##     20   943612.7053             nan     0.0500 21290.2848
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3218893.3156             nan     0.0100 19480.7115
-    ##      2  3194175.0397             nan     0.0100 25814.5348
-    ##      3  3166381.6949             nan     0.0100 21537.3223
-    ##      4  3137058.4871             nan     0.0100 20926.6819
-    ##      5  3117324.2046             nan     0.0100 17131.7300
-    ##      6  3099330.2462             nan     0.0100 17135.9493
-    ##      7  3072199.0967             nan     0.0100 14929.7318
-    ##      8  3048400.0911             nan     0.0100 18353.5388
-    ##      9  3027519.9901             nan     0.0100 13883.7963
-    ##     10  3006249.1465             nan     0.0100 11286.3247
-    ##     20  2805363.1688             nan     0.0100 13732.2527
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3198853.8253             nan     0.0100 41665.3125
-    ##      2  3147586.9831             nan     0.0100 43573.4221
-    ##      3  3100983.1084             nan     0.0100 39738.0043
-    ##      4  3059105.5836             nan     0.0100 26681.4504
-    ##      5  3018108.7307             nan     0.0100 32664.3758
-    ##      6  2969289.3309             nan     0.0100 36708.4228
-    ##      7  2933108.9846             nan     0.0100 32775.0194
-    ##      8  2894626.0118             nan     0.0100 22724.2086
-    ##      9  2852529.3030             nan     0.0100 31409.3512
-    ##     10  2812457.1519             nan     0.0100 37660.1392
-    ##     20  2459087.7048             nan     0.0100 24829.8197
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3109763.5651             nan     0.0500 93197.0557
-    ##      2  2978208.9254             nan     0.0500 97086.4215
-    ##      3  2879464.3630             nan     0.0500 97409.0106
-    ##      4  2806579.8449             nan     0.0500 43074.4639
-    ##      5  2716246.8755             nan     0.0500 77745.0320
-    ##      6  2634665.6119             nan     0.0500 83109.0462
-    ##      7  2546218.5662             nan     0.0500 56895.4980
-    ##      8  2463827.4084             nan     0.0500 65828.6283
-    ##      9  2386688.7672             nan     0.0500 53673.5963
-    ##     10  2311657.5418             nan     0.0500 51247.2011
-    ##     20  1836420.9044             nan     0.0500 -9475.5432
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3032505.4352             nan     0.0500 137891.5273
-    ##      2  2839698.7628             nan     0.0500 133287.4536
-    ##      3  2636850.5901             nan     0.0500 166143.1316
-    ##      4  2460715.6329             nan     0.0500 161555.3138
-    ##      5  2258185.4189             nan     0.0500 110240.3114
-    ##      6  2127614.4227             nan     0.0500 84192.6661
-    ##      7  2019519.0277             nan     0.0500 72188.0297
-    ##      8  1877896.1847             nan     0.0500 99647.1985
-    ##      9  1769110.3408             nan     0.0500 66032.1066
-    ##     10  1692768.6963             nan     0.0500 61955.3275
-    ##     20  1015054.9802             nan     0.0500 27416.1199
-
-    ## Warning in preProcess.default(thresh = 0.95,
-    ## k = 5, freqCut = 19, uniqueCut = 10, : These
-    ## variables have zero variances: weathersit3
-
-    ## Warning in (function (x, y, offset = NULL, misc
-    ## = NULL, distribution = "bernoulli", : variable
-    ## 17: weathersit3 has no variation.
-
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  2913039.0911             nan     0.0100 26590.6845
-    ##      2  2888813.9720             nan     0.0100 19962.9483
-    ##      3  2868362.3391             nan     0.0100 13926.6482
-    ##      4  2847477.7191             nan     0.0100 21192.1090
-    ##      5  2816413.8822             nan     0.0100 30542.6189
-    ##      6  2795951.9785             nan     0.0100 11519.2362
-    ##      7  2774191.5025             nan     0.0100 22051.1552
-    ##      8  2749934.3331             nan     0.0100 23340.0555
-    ##      9  2731486.5298             nan     0.0100 10622.7100
-    ##     10  2706928.0379             nan     0.0100 17592.7164
-    ##     20  2479826.3658             nan     0.0100 17265.1241
-
-    ## Warning in preProcess.default(thresh = 0.95,
-    ## k = 5, freqCut = 19, uniqueCut = 10, : These
-    ## variables have zero variances: weathersit3
-
-    ## Warning in (function (x, y, offset = NULL, misc
-    ## = NULL, distribution = "bernoulli", : variable
-    ## 17: weathersit3 has no variation.
-
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  2889197.1362             nan     0.0100 44518.7243
-    ##      2  2845001.9510             nan     0.0100 36232.4956
-    ##      3  2802858.5880             nan     0.0100 38938.0740
-    ##      4  2755836.8190             nan     0.0100 46760.6519
-    ##      5  2712089.8471             nan     0.0100 37321.5660
-    ##      6  2675748.0387             nan     0.0100 27160.2392
-    ##      7  2628690.6243             nan     0.0100 43241.0019
-    ##      8  2591187.7163             nan     0.0100 31924.0180
-    ##      9  2548973.7945             nan     0.0100 39828.5164
-    ##     10  2510771.7931             nan     0.0100 41407.0526
-    ##     20  2159094.3181             nan     0.0100 28904.1504
-
-    ## Warning in preProcess.default(thresh = 0.95,
-    ## k = 5, freqCut = 19, uniqueCut = 10, : These
-    ## variables have zero variances: weathersit3
-
-    ## Warning in (function (x, y, offset = NULL, misc
-    ## = NULL, distribution = "bernoulli", : variable
-    ## 17: weathersit3 has no variation.
-
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  2842423.9783             nan     0.0500 88107.8639
-    ##      2  2728041.0224             nan     0.0500 136426.1467
-    ##      3  2613415.9862             nan     0.0500 109365.2744
-    ##      4  2545365.0622             nan     0.0500 53747.1041
-    ##      5  2437052.0415             nan     0.0500 93920.8590
-    ##      6  2344158.7246             nan     0.0500 70887.1437
-    ##      7  2214873.3223             nan     0.0500 74416.4060
-    ##      8  2132004.6166             nan     0.0500 64436.9737
-    ##      9  2052420.4630             nan     0.0500 57204.1547
-    ##     10  1976066.6244             nan     0.0500 65567.3721
-    ##     20  1448147.0497             nan     0.0500 44000.8100
-
-    ## Warning in preProcess.default(thresh = 0.95,
-    ## k = 5, freqCut = 19, uniqueCut = 10, : These
-    ## variables have zero variances: weathersit3
-
-    ## Warning in (function (x, y, offset = NULL, misc
-    ## = NULL, distribution = "bernoulli", : variable
-    ## 17: weathersit3 has no variation.
-
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  2706366.8415             nan     0.0500 249254.0520
-    ##      2  2491782.3463             nan     0.0500 172266.6050
-    ##      3  2296208.6536             nan     0.0500 170744.0569
-    ##      4  2108161.5078             nan     0.0500 195358.4908
-    ##      5  1959824.2462             nan     0.0500 126481.1529
-    ##      6  1836000.8979             nan     0.0500 96087.7453
-    ##      7  1720128.4166             nan     0.0500 132974.7026
-    ##      8  1598470.2156             nan     0.0500 61982.5683
-    ##      9  1477135.4424             nan     0.0500 116914.5332
-    ##     10  1392829.5423             nan     0.0500 57291.6326
-    ##     20   780521.7339             nan     0.0500 23122.3886
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3380066.3439             nan     0.0100 25660.5632
-    ##      2  3350830.8231             nan     0.0100 25333.1850
-    ##      3  3327753.5001             nan     0.0100 10190.7550
-    ##      4  3303230.6064             nan     0.0100 24724.8167
-    ##      5  3272432.7955             nan     0.0100 21515.1431
-    ##      6  3256867.3992             nan     0.0100 9823.9678
-    ##      7  3229623.9544             nan     0.0100 22367.7927
-    ##      8  3201024.6374             nan     0.0100 20554.1336
-    ##      9  3175621.7754             nan     0.0100 26472.6939
-    ##     10  3156193.0010             nan     0.0100 22177.8464
-    ##     20  2959224.1157             nan     0.0100 5168.1359
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3358227.3630             nan     0.0100 50726.7760
-    ##      2  3310030.3575             nan     0.0100 38608.8308
-    ##      3  3265389.8871             nan     0.0100 26975.3297
-    ##      4  3220404.1164             nan     0.0100 32091.0238
-    ##      5  3172870.4451             nan     0.0100 48781.7004
-    ##      6  3117972.3394             nan     0.0100 38700.8072
-    ##      7  3076104.7224             nan     0.0100 40642.4456
-    ##      8  3042844.4010             nan     0.0100 23034.0417
-    ##      9  3014943.4736             nan     0.0100 21498.2166
-    ##     10  2972203.3055             nan     0.0100 42826.1180
-    ##     20  2595612.1478             nan     0.0100 27343.3714
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3252692.6714             nan     0.0500 132615.1843
-    ##      2  3110010.6607             nan     0.0500 120073.5496
-    ##      3  3003251.0111             nan     0.0500 51127.6067
-    ##      4  2882922.4116             nan     0.0500 79119.1868
-    ##      5  2789662.8129             nan     0.0500 56482.1973
-    ##      6  2683038.5754             nan     0.0500 113107.7996
-    ##      7  2603276.6138             nan     0.0500 74559.8810
-    ##      8  2547428.0898             nan     0.0500 22931.8194
-    ##      9  2467407.4153             nan     0.0500 58205.3851
-    ##     10  2417607.7324             nan     0.0500 32874.2692
-    ##     20  1923625.9923             nan     0.0500 28382.1570
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3169305.0984             nan     0.0500 182970.6432
-    ##      2  2987007.3833             nan     0.0500 171700.3289
-    ##      3  2787493.9975             nan     0.0500 135900.3618
-    ##      4  2640597.6439             nan     0.0500 102313.2539
-    ##      5  2469510.9275             nan     0.0500 158452.8742
-    ##      6  2320257.4134             nan     0.0500 127552.9709
-    ##      7  2170001.3634             nan     0.0500 130770.8312
-    ##      8  2030180.3068             nan     0.0500 108185.8383
-    ##      9  1920197.1749             nan     0.0500 72253.0422
-    ##     10  1800511.0097             nan     0.0500 104859.8563
-    ##     20  1050081.6885             nan     0.0500 28049.4826
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3396262.2708             nan     0.0100 28225.1053
-    ##      2  3367652.9963             nan     0.0100 28243.2712
-    ##      3  3345826.2722             nan     0.0100 25911.5243
-    ##      4  3317159.8909             nan     0.0100 18633.4885
-    ##      5  3282428.9105             nan     0.0100 20611.3258
-    ##      6  3265147.8941             nan     0.0100 16056.0496
-    ##      7  3245288.3780             nan     0.0100 16599.5838
-    ##      8  3223529.1717             nan     0.0100 24597.7360
-    ##      9  3204346.6043             nan     0.0100 14361.5992
-    ##     10  3179880.4431             nan     0.0100 19552.4017
-    ##     20  2943589.5693             nan     0.0100 13908.3377
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3391229.4902             nan     0.0100 26568.9886
-    ##      2  3361648.2147             nan     0.0100 13407.1614
-    ##      3  3313335.4602             nan     0.0100 46942.3857
-    ##      4  3268213.9067             nan     0.0100 27622.8595
-    ##      5  3221161.1594             nan     0.0100 39399.8321
-    ##      6  3179196.6478             nan     0.0100 31973.3612
-    ##      7  3134468.1397             nan     0.0100 37843.8645
-    ##      8  3091546.9736             nan     0.0100 38018.5159
-    ##      9  3045051.1829             nan     0.0100 48545.1623
-    ##     10  3008585.6625             nan     0.0100 18091.4202
-    ##     20  2637757.3875             nan     0.0100 31751.3965
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3273957.9254             nan     0.0500 128569.6031
-    ##      2  3139458.6760             nan     0.0500 110439.1253
-    ##      3  3015399.9706             nan     0.0500 114934.1941
-    ##      4  2925901.7097             nan     0.0500 78472.0272
-    ##      5  2805421.5459             nan     0.0500 90116.4866
-    ##      6  2722657.6005             nan     0.0500 82445.5813
-    ##      7  2648331.1841             nan     0.0500 64032.5660
-    ##      8  2570901.7256             nan     0.0500 64621.7673
-    ##      9  2483322.2623             nan     0.0500 44765.6288
-    ##     10  2409976.1605             nan     0.0500 61145.9754
-    ##     20  1868285.6611             nan     0.0500 17921.3906
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3174479.2408             nan     0.0500 244689.1749
-    ##      2  2943008.6891             nan     0.0500 198615.3090
-    ##      3  2748475.8832             nan     0.0500 191677.0029
-    ##      4  2562207.1338             nan     0.0500 130886.6074
-    ##      5  2379353.1602             nan     0.0500 130129.5711
-    ##      6  2231065.8116             nan     0.0500 131370.9684
-    ##      7  2089213.8240             nan     0.0500 101101.0237
-    ##      8  1959417.2697             nan     0.0500 85607.3573
-    ##      9  1850530.0297             nan     0.0500 76200.0937
-    ##     10  1726808.4682             nan     0.0500 93531.4644
-    ##     20   990148.2837             nan     0.0500 14406.1214
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3204310.0394             nan     0.0100 18931.9591
-    ##      2  3178249.7593             nan     0.0100 18782.2112
-    ##      3  3153990.0990             nan     0.0100 21120.3190
-    ##      4  3121843.2413             nan     0.0100 26245.3747
-    ##      5  3097160.9600             nan     0.0100 20185.6234
-    ##      6  3075297.0384             nan     0.0100 20020.7362
-    ##      7  3048253.2375             nan     0.0100 18404.1378
-    ##      8  3026401.7559             nan     0.0100 20177.2088
-    ##      9  3010998.3079             nan     0.0100 8464.8580
-    ##     10  2987286.9990             nan     0.0100 19631.1646
-    ##     20  2804177.4619             nan     0.0100 19003.4020
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3179243.7504             nan     0.0100 42296.3019
-    ##      2  3133454.9499             nan     0.0100 33156.1270
-    ##      3  3097868.1768             nan     0.0100 25756.4093
-    ##      4  3056266.6808             nan     0.0100 40573.7021
-    ##      5  3012817.1144             nan     0.0100 42899.0522
-    ##      6  2967042.5685             nan     0.0100 30832.3562
-    ##      7  2928961.6434             nan     0.0100 25298.0077
-    ##      8  2896182.5459             nan     0.0100 23101.9755
-    ##      9  2859704.9499             nan     0.0100 36908.8338
-    ##     10  2821103.4261             nan     0.0100 33899.2970
-    ##     20  2454854.9233             nan     0.0100 29065.5839
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3103630.0397             nan     0.0500 113907.4186
-    ##      2  2992964.1737             nan     0.0500 94256.1903
-    ##      3  2904246.8104             nan     0.0500 94321.0790
-    ##      4  2801557.3733             nan     0.0500 80604.2138
-    ##      5  2726897.4340             nan     0.0500 64448.6569
-    ##      6  2659425.7878             nan     0.0500 58490.8352
-    ##      7  2576330.3339             nan     0.0500 35239.3542
-    ##      8  2479967.6380             nan     0.0500 71605.8892
-    ##      9  2404516.9751             nan     0.0500 46117.5531
-    ##     10  2324546.9190             nan     0.0500 33203.5941
-    ##     20  1842884.8392             nan     0.0500 15826.0147
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  2996799.2822             nan     0.0500 226717.1680
-    ##      2  2783545.0590             nan     0.0500 217229.4018
-    ##      3  2615803.8718             nan     0.0500 132516.9113
-    ##      4  2460399.7398             nan     0.0500 94293.4557
-    ##      5  2310224.7211             nan     0.0500 109441.2392
-    ##      6  2191215.0327             nan     0.0500 114490.2741
-    ##      7  2071278.6574             nan     0.0500 83913.6306
-    ##      8  1925843.7939             nan     0.0500 126944.0774
-    ##      9  1806442.5506             nan     0.0500 116273.8943
-    ##     10  1697131.1478             nan     0.0500 91982.6689
-    ##     20  1016313.3496             nan     0.0500 20347.8752
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3295405.9018             nan     0.0100 25607.3509
-    ##      2  3268333.7115             nan     0.0100 22642.4014
-    ##      3  3241600.8008             nan     0.0100 23467.8357
-    ##      4  3216575.5522             nan     0.0100 24898.3307
-    ##      5  3191036.9066             nan     0.0100 20925.7492
-    ##      6  3162599.7579             nan     0.0100 20448.3192
-    ##      7  3134512.7030             nan     0.0100 12027.4561
-    ##      8  3116776.6714             nan     0.0100 14838.4170
-    ##      9  3091353.7904             nan     0.0100 16513.8141
-    ##     10  3067241.1679             nan     0.0100 18916.7804
-    ##     20  2855414.6990             nan     0.0100 9643.4302
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3274293.7488             nan     0.0100 33828.8055
-    ##      2  3229485.1631             nan     0.0100 35614.5138
-    ##      3  3184053.9822             nan     0.0100 45142.4737
-    ##      4  3138601.5423             nan     0.0100 27572.8121
-    ##      5  3095633.4590             nan     0.0100 36987.7284
-    ##      6  3057285.1024             nan     0.0100 35568.6690
-    ##      7  3021717.3083             nan     0.0100 28815.4037
-    ##      8  2979776.2956             nan     0.0100 29151.0340
-    ##      9  2938271.2257             nan     0.0100 28601.4234
-    ##     10  2891767.2538             nan     0.0100 34636.6626
-    ##     20  2530129.9990             nan     0.0100 25842.7275
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3176090.4358             nan     0.0500 107897.4780
-    ##      2  3082517.0725             nan     0.0500 1449.4798
-    ##      3  2981639.0598             nan     0.0500 88712.4886
-    ##      4  2901636.2083             nan     0.0500 72709.2292
-    ##      5  2803229.6476             nan     0.0500 86790.6541
-    ##      6  2720684.8725             nan     0.0500 83017.0321
-    ##      7  2631803.4026             nan     0.0500 51496.8649
-    ##      8  2569803.2654             nan     0.0500 47263.7377
-    ##      9  2474778.3796             nan     0.0500 68241.1952
-    ##     10  2420911.6613             nan     0.0500 23126.8885
-    ##     20  1899683.3589             nan     0.0500 49131.0229
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3069004.8987             nan     0.0500 187320.2121
-    ##      2  2851570.2270             nan     0.0500 152660.6725
-    ##      3  2645425.3064             nan     0.0500 180618.1098
-    ##      4  2462001.9009             nan     0.0500 117167.4154
-    ##      5  2299208.5905             nan     0.0500 137501.3378
-    ##      6  2157495.7208             nan     0.0500 116354.8119
-    ##      7  2005681.4243             nan     0.0500 86439.4384
-    ##      8  1912409.0936             nan     0.0500 57077.0972
-    ##      9  1807585.5081             nan     0.0500 105342.6001
-    ##     10  1708875.6208             nan     0.0500 47614.6389
-    ##     20   991930.4289             nan     0.0500 47966.0631
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3290499.6700             nan     0.0100 23682.0487
-    ##      2  3263601.1496             nan     0.0100 24411.7524
-    ##      3  3236252.6059             nan     0.0100 22691.0362
-    ##      4  3211004.9091             nan     0.0100 21587.2259
-    ##      5  3180706.0248             nan     0.0100 17996.5064
-    ##      6  3161115.3660             nan     0.0100 20803.1463
-    ##      7  3137588.4709             nan     0.0100 20285.2737
-    ##      8  3115676.2582             nan     0.0100 18535.4300
-    ##      9  3088264.1434             nan     0.0100 14612.9075
-    ##     10  3069284.2333             nan     0.0100 14959.4630
-    ##     20  2887822.1629             nan     0.0100 16318.5033
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3271448.6189             nan     0.0100 33549.5507
-    ##      2  3220819.2960             nan     0.0100 44352.7952
-    ##      3  3174309.9290             nan     0.0100 45445.1993
-    ##      4  3125022.3695             nan     0.0100 24407.6100
-    ##      5  3086797.7124             nan     0.0100 20439.3016
-    ##      6  3045629.4208             nan     0.0100 41842.1509
-    ##      7  3010967.6676             nan     0.0100 28229.9519
-    ##      8  2979271.7405             nan     0.0100 26149.8987
-    ##      9  2940777.4995             nan     0.0100 28004.9159
-    ##     10  2899334.7554             nan     0.0100 40678.8759
-    ##     20  2540614.9731             nan     0.0100 22810.2061
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3156232.3146             nan     0.0500 73756.6850
-    ##      2  3043560.9603             nan     0.0500 74752.8146
-    ##      3  2947698.7724             nan     0.0500 97078.2185
-    ##      4  2829740.5901             nan     0.0500 61836.0447
-    ##      5  2759934.3956             nan     0.0500 45695.5527
-    ##      6  2718220.0731             nan     0.0500 -15187.7736
-    ##      7  2634214.0212             nan     0.0500 63898.8975
-    ##      8  2576044.5973             nan     0.0500 56399.4911
-    ##      9  2501401.9045             nan     0.0500 53078.4679
-    ##     10  2440625.8236             nan     0.0500 54407.3951
-    ##     20  1919325.6771             nan     0.0500 24734.6873
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3044483.9060             nan     0.0500 215805.6577
-    ##      2  2825090.6108             nan     0.0500 143597.3056
-    ##      3  2647027.9826             nan     0.0500 128214.1716
-    ##      4  2475056.3426             nan     0.0500 131099.2574
-    ##      5  2317261.1516             nan     0.0500 123958.5102
-    ##      6  2169657.6423             nan     0.0500 112614.7207
-    ##      7  2015096.0304             nan     0.0500 111635.6151
-    ##      8  1907773.6180             nan     0.0500 87801.8534
-    ##      9  1789130.1721             nan     0.0500 80086.0869
-    ##     10  1655663.8834             nan     0.0500 119013.5687
-    ##     20   946362.3480             nan     0.0500 26137.7572
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3125224.8094             nan     0.0100 22392.0788
-    ##      2  3100279.6473             nan     0.0100 22568.4530
-    ##      3  3072632.9032             nan     0.0100 18213.0891
-    ##      4  3060962.2417             nan     0.0100 9551.4222
-    ##      5  3039067.7398             nan     0.0100 22394.9801
-    ##      6  3018958.9739             nan     0.0100 8372.6446
-    ##      7  2995247.6178             nan     0.0100 17343.8838
-    ##      8  2973092.1495             nan     0.0100 20252.0392
-    ##      9  2949546.5997             nan     0.0100 12206.3319
-    ##     10  2932844.8649             nan     0.0100 16088.2535
-    ##     20  2745970.6029             nan     0.0100 13426.2828
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3111596.1780             nan     0.0100 40760.3054
-    ##      2  3068626.8089             nan     0.0100 36603.0829
-    ##      3  3024831.3201             nan     0.0100 38946.9022
-    ##      4  2984377.9849             nan     0.0100 24666.2170
-    ##      5  2944924.6623             nan     0.0100 29154.4348
-    ##      6  2903941.7671             nan     0.0100 28228.4757
-    ##      7  2866154.2415             nan     0.0100 28591.3080
-    ##      8  2830630.6923             nan     0.0100 26577.0919
-    ##      9  2785123.6055             nan     0.0100 44551.5020
-    ##     10  2748035.0751             nan     0.0100 25983.6045
-    ##     20  2402108.0890             nan     0.0100 30586.7349
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3006543.7223             nan     0.0500 113873.8793
-    ##      2  2914883.4448             nan     0.0500 76276.6669
-    ##      3  2787652.6677             nan     0.0500 90485.8232
-    ##      4  2689312.9067             nan     0.0500 73066.3095
-    ##      5  2606292.2045             nan     0.0500 69312.4567
-    ##      6  2508807.1696             nan     0.0500 55715.4855
-    ##      7  2453146.8761             nan     0.0500 34624.7794
-    ##      8  2387056.9406             nan     0.0500 70197.8569
-    ##      9  2335512.3229             nan     0.0500 18069.3480
-    ##     10  2283683.5650             nan     0.0500 41889.2596
-    ##     20  1799257.1799             nan     0.0500 14435.5615
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  2944674.8037             nan     0.0500 259459.2780
-    ##      2  2754299.1789             nan     0.0500 167901.9983
-    ##      3  2578172.0084             nan     0.0500 122994.3193
-    ##      4  2410775.9878             nan     0.0500 133021.2490
-    ##      5  2239819.5521             nan     0.0500 172399.7378
-    ##      6  2103418.5300             nan     0.0500 95203.9583
-    ##      7  1965754.3644             nan     0.0500 80730.3365
-    ##      8  1827665.6063             nan     0.0500 69353.3486
-    ##      9  1706473.3494             nan     0.0500 51625.0399
-    ##     10  1597330.7158             nan     0.0500 101801.8203
-    ##     20   945270.7951             nan     0.0500 21781.4558
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3421904.0081             nan     0.0100 21435.3643
-    ##      2  3393283.2995             nan     0.0100 19302.3875
-    ##      3  3369794.3786             nan     0.0100 9692.1771
-    ##      4  3334783.9575             nan     0.0100 20045.2189
-    ##      5  3305664.1694             nan     0.0100 23691.4325
-    ##      6  3284202.7769             nan     0.0100 21678.8648
-    ##      7  3278950.3825             nan     0.0100 -3428.5542
-    ##      8  3253966.8557             nan     0.0100 19329.1157
-    ##      9  3224132.0007             nan     0.0100 13945.1361
-    ##     10  3196685.7003             nan     0.0100 20289.7073
-    ##     20  2981777.6472             nan     0.0100 11816.9524
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3412782.1571             nan     0.0100 40321.7743
-    ##      2  3362553.6472             nan     0.0100 32028.5232
-    ##      3  3319723.4991             nan     0.0100 32880.3298
-    ##      4  3272433.1607             nan     0.0100 40878.9947
-    ##      5  3226632.7624             nan     0.0100 35821.1857
-    ##      6  3174035.5804             nan     0.0100 38499.5040
-    ##      7  3132146.7485             nan     0.0100 22821.5246
-    ##      8  3084911.4778             nan     0.0100 46041.8476
-    ##      9  3043947.8873             nan     0.0100 47652.2201
-    ##     10  3010422.0427             nan     0.0100 31532.3467
-    ##     20  2626169.3873             nan     0.0100 34749.5473
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3299375.2162             nan     0.0500 126991.8470
-    ##      2  3185990.4457             nan     0.0500 113593.9472
-    ##      3  3051112.1514             nan     0.0500 54392.9539
-    ##      4  2942920.4248             nan     0.0500 94754.3054
-    ##      5  2838189.6966             nan     0.0500 90056.2331
-    ##      6  2711436.6236             nan     0.0500 63372.2049
-    ##      7  2599180.6388             nan     0.0500 50069.5555
-    ##      8  2506149.2450             nan     0.0500 78286.6740
-    ##      9  2415390.4128             nan     0.0500 46143.9868
-    ##     10  2364729.0018             nan     0.0500 28631.5981
-    ##     20  1807266.8788             nan     0.0500 39286.2094
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3221270.8195             nan     0.0500 177179.8605
-    ##      2  2989980.3702             nan     0.0500 207012.1958
-    ##      3  2781549.6978             nan     0.0500 133231.2108
-    ##      4  2608601.3897             nan     0.0500 150446.8316
-    ##      5  2434783.3456             nan     0.0500 159422.7059
-    ##      6  2283776.6815             nan     0.0500 140749.5641
-    ##      7  2143330.6190             nan     0.0500 129514.5659
-    ##      8  1991652.9629             nan     0.0500 144455.5700
-    ##      9  1846136.0003             nan     0.0500 90093.1213
-    ##     10  1738094.2516             nan     0.0500 49186.3646
-    ##     20  1004500.4214             nan     0.0500 29855.8077
-    ## 
-    ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1  3085231.0676             nan     0.0500 210079.3966
-    ##      2  2893572.0631             nan     0.0500 184061.4150
-    ##      3  2713405.9476             nan     0.0500 172387.0518
-    ##      4  2525512.9132             nan     0.0500 170634.9348
-    ##      5  2371140.3488             nan     0.0500 105143.1427
-    ##      6  2203105.3894             nan     0.0500 158809.4714
-    ##      7  2046300.5552             nan     0.0500 80185.3873
-    ##      8  1913158.9828             nan     0.0500 86282.3252
-    ##      9  1801177.3526             nan     0.0500 70345.2063
-    ##     10  1692606.0607             nan     0.0500 83210.5559
-    ##     20   952308.2966             nan     0.0500 30283.2626
-
-``` r
 # Display information from the boost fit
 fitBoost$results
 ```
 
-    ##   shrinkage interaction.depth n.minobsinnode
-    ## 1      0.01                 1              3
-    ## 5      0.05                 1              3
-    ## 3      0.01                 5              3
-    ## 7      0.05                 5              3
-    ## 2      0.01                 1              3
-    ## 6      0.05                 1              3
-    ## 4      0.01                 5              3
-    ## 8      0.05                 5              3
-    ##   n.trees     RMSE  Rsquared       MAE   RMSESD
-    ## 1      10 1734.925 0.4480198 1434.8610 442.3957
-    ## 5      10 1536.637 0.5824130 1268.0836 450.0916
-    ## 3      10 1690.517 0.6983663 1402.1007 436.6668
-    ## 7      10 1371.919 0.6945792 1113.6907 445.8834
-    ## 2      20 1682.075 0.4823198 1391.7032 443.0131
-    ## 6      20 1394.853 0.6201307 1140.2060 469.5742
-    ## 4      20 1589.005 0.7156397 1317.4303 436.3682
-    ## 8      20 1133.081 0.7280664  891.9338 454.2683
-    ##   RsquaredSD    MAESD
-    ## 1  0.1696834 382.3785
-    ## 5  0.2208120 390.9412
-    ## 3  0.2535106 370.5966
-    ## 7  0.2644414 365.2358
-    ## 2  0.1879347 382.3446
-    ## 6  0.2333821 380.5306
-    ## 4  0.2529020 367.8450
-    ## 8  0.2427635 353.7345
+    ##     shrinkage interaction.depth n.minobsinnode
+    ## 1        0.01                 1              3
+    ## 7        0.01                 1              5
+    ## 13       0.01                 1             10
+    ## 55       0.05                 1              3
+    ## 61       0.05                 1              5
+    ## 67       0.05                 1             10
+    ## 109      0.10                 1              3
+    ## 115      0.10                 1              5
+    ## 121      0.10                 1             10
+    ## 163      0.50                 1              3
+    ## 169      0.50                 1              5
+    ## 175      0.50                 1             10
+    ## 19       0.01                 5              3
+    ## 25       0.01                 5              5
+    ## 31       0.01                 5             10
+    ## 73       0.05                 5              3
+    ## 79       0.05                 5              5
+    ## 85       0.05                 5             10
+    ## 127      0.10                 5              3
+    ## 133      0.10                 5              5
+    ## 139      0.10                 5             10
+    ## 181      0.50                 5              3
+    ## 187      0.50                 5              5
+    ## 193      0.50                 5             10
+    ## 37       0.01                10              3
+    ## 43       0.01                10              5
+    ## 49       0.01                10             10
+    ## 91       0.05                10              3
+    ## 97       0.05                10              5
+    ## 103      0.05                10             10
+    ## 145      0.10                10              3
+    ## 151      0.10                10              5
+    ## 157      0.10                10             10
+    ## 199      0.50                10              3
+    ## 205      0.50                10              5
+    ## 211      0.50                10             10
+    ## 2        0.01                 1              3
+    ## 8        0.01                 1              5
+    ## 14       0.01                 1             10
+    ## 56       0.05                 1              3
+    ## 62       0.05                 1              5
+    ## 68       0.05                 1             10
+    ## 110      0.10                 1              3
+    ## 116      0.10                 1              5
+    ## 122      0.10                 1             10
+    ## 164      0.50                 1              3
+    ## 170      0.50                 1              5
+    ## 176      0.50                 1             10
+    ## 20       0.01                 5              3
+    ## 26       0.01                 5              5
+    ## 32       0.01                 5             10
+    ## 74       0.05                 5              3
+    ## 80       0.05                 5              5
+    ## 86       0.05                 5             10
+    ## 128      0.10                 5              3
+    ## 134      0.10                 5              5
+    ## 140      0.10                 5             10
+    ## 182      0.50                 5              3
+    ## 188      0.50                 5              5
+    ## 194      0.50                 5             10
+    ## 38       0.01                10              3
+    ## 44       0.01                10              5
+    ## 50       0.01                10             10
+    ## 92       0.05                10              3
+    ## 98       0.05                10              5
+    ## 104      0.05                10             10
+    ## 146      0.10                10              3
+    ## 152      0.10                10              5
+    ## 158      0.10                10             10
+    ## 200      0.50                10              3
+    ## 206      0.50                10              5
+    ## 212      0.50                10             10
+    ## 3        0.01                 1              3
+    ## 9        0.01                 1              5
+    ## 15       0.01                 1             10
+    ## 57       0.05                 1              3
+    ## 63       0.05                 1              5
+    ## 69       0.05                 1             10
+    ## 111      0.10                 1              3
+    ## 117      0.10                 1              5
+    ## 123      0.10                 1             10
+    ## 165      0.50                 1              3
+    ## 171      0.50                 1              5
+    ## 177      0.50                 1             10
+    ## 21       0.01                 5              3
+    ## 27       0.01                 5              5
+    ## 33       0.01                 5             10
+    ## 75       0.05                 5              3
+    ## 81       0.05                 5              5
+    ## 87       0.05                 5             10
+    ## 129      0.10                 5              3
+    ## 135      0.10                 5              5
+    ## 141      0.10                 5             10
+    ## 183      0.50                 5              3
+    ## 189      0.50                 5              5
+    ## 195      0.50                 5             10
+    ## 39       0.01                10              3
+    ## 45       0.01                10              5
+    ## 51       0.01                10             10
+    ## 93       0.05                10              3
+    ##     n.trees      RMSE  Rsquared       MAE
+    ## 1        10 1736.6757 0.4322335 1438.5720
+    ## 7        10 1737.6601 0.4454554 1441.4247
+    ## 13       10 1735.6652 0.4757959 1437.3139
+    ## 55       10 1556.1784 0.5375522 1277.3974
+    ## 61       10 1550.5657 0.5426974 1275.4147
+    ## 67       10 1543.7300 0.5162748 1269.3964
+    ## 109      10 1382.0743 0.6327529 1134.9593
+    ## 115      10 1392.2798 0.6065156 1135.6858
+    ## 121      10 1395.5383 0.5632101 1155.8522
+    ## 163      10 1027.3453 0.7102564  819.7227
+    ## 169      10  928.0548 0.7378777  768.1836
+    ## 175      10 1070.9424 0.6742435  838.5402
+    ## 19       10 1682.4463 0.7385789 1392.5053
+    ## 25       10 1694.1571 0.6763204 1403.0325
+    ## 31       10 1721.5425 0.6225281 1424.9023
+    ## 73       10 1361.4875 0.7188033 1097.0409
+    ## 79       10 1382.5326 0.6952032 1125.1450
+    ## 85       10 1488.2344 0.6346184 1210.6918
+    ## 127      10 1090.6907 0.7481893  864.8716
+    ## 133      10 1187.5011 0.6954496  937.2452
+    ## 139      10 1268.9325 0.6878736 1014.7171
+    ## 181      10 1099.3168 0.6883596  797.7895
+    ## 187      10 1058.6784 0.6935778  840.2851
+    ## 193      10 1057.0119 0.6801911  793.4289
+    ## 37       10 1683.6881 0.7280788 1393.6243
+    ## 43       10 1690.9121 0.6777080 1398.4009
+    ## 49       10 1718.3538 0.5947861 1422.5989
+    ## 91       10 1337.0985 0.7343657 1092.7535
+    ## 97       10 1392.4318 0.6982259 1127.5790
+    ## 103      10 1492.9184 0.6303691 1224.9518
+    ## 145      10 1126.7308 0.7255491  888.9691
+    ## 151      10 1160.5510 0.7127584  917.8847
+    ## 157      10 1310.5982 0.6765679 1044.4950
+    ## 199      10  904.1487 0.7537041  728.2348
+    ## 205      10 1062.5906 0.6823346  813.5341
+    ## 211      10  974.6142 0.7497130  769.6288
+    ## 2        20 1681.1698 0.4625424 1393.2020
+    ## 8        20 1681.6570 0.5160128 1397.6297
+    ## 14       20 1680.1883 0.5013272 1389.9492
+    ## 56       20 1395.8862 0.6491042 1132.0130
+    ## 62       20 1385.7825 0.6184157 1130.2083
+    ## 68       20 1386.6717 0.5955047 1132.9690
+    ## 110      20 1195.3404 0.6715765  973.4185
+    ## 116      20 1192.6996 0.6717481  959.6620
+    ## 122      20 1204.1250 0.6458310  974.3331
+    ## 164      20  952.6086 0.7396670  736.2526
+    ## 170      20  922.8266 0.7487855  730.0404
+    ## 176      20 1053.5568 0.6866083  793.4140
+    ## 20       20 1585.0493 0.7420908 1309.7364
+    ## 26       20 1600.4607 0.6938418 1322.2320
+    ## 32       20 1654.6833 0.6091322 1366.5474
+    ## 74       20 1157.4228 0.7113275  920.9084
+    ## 80       20 1189.0030 0.6982277  964.7364
+    ## 86       20 1294.1525 0.6596252 1025.7591
+    ## 128      20  913.7568 0.7663158  704.6638
+    ## 134      20  954.9591 0.7642811  730.1292
+    ## 140      20 1072.6523 0.7127027  837.9164
+    ## 182      20 1006.7090 0.7360905  730.2591
+    ## 188      20 1022.9933 0.7070043  798.9446
+    ## 194      20 1022.1845 0.7031714  767.7522
+    ## 38       20 1581.5219 0.7373115 1307.3913
+    ## 44       20 1600.7196 0.6839223 1318.3879
+    ## 50       20 1650.5094 0.6192752 1365.0653
+    ## 92       20 1105.6983 0.7408762  890.2563
+    ## 98       20 1175.7037 0.7204260  932.2355
+    ## 104      20 1299.5768 0.6828077 1052.4093
+    ## 146      20  948.6622 0.7583650  738.7079
+    ## 152      20  961.1562 0.7561656  751.2527
+    ## 158      20 1103.6595 0.7130691  882.1250
+    ## 200      20  943.9649 0.7485461  767.8231
+    ## 206      20 1037.3594 0.7008991  796.1538
+    ## 212      20  977.3229 0.7439066  722.8738
+    ## 3        50 1552.8294 0.5728984 1284.6558
+    ## 9        50 1547.8661 0.5537325 1280.9680
+    ## 15       50 1549.1817 0.5310596 1279.9027
+    ## 57       50 1121.6104 0.7222906  909.0395
+    ## 63       50 1117.4072 0.7175858  901.8760
+    ## 69       50 1133.2632 0.6874760  903.3648
+    ## 111      50  966.8652 0.7586302  776.9318
+    ## 117      50  918.9677 0.7742983  724.1975
+    ## 123      50 1007.5100 0.7189943  784.9578
+    ## 165      50 1051.3073 0.7065749  804.0851
+    ## 171      50  957.3499 0.7495273  760.2377
+    ## 177      50  936.3048 0.7542005  734.6215
+    ## 21       50 1360.9761 0.7433036 1113.2478
+    ## 27       50 1394.5687 0.7090204 1127.8240
+    ## 33       50 1485.0396 0.6639493 1215.6423
+    ## 75       50  881.6931 0.7758698  684.8577
+    ## 81       50  916.6839 0.7590876  693.5491
+    ## 87       50 1060.7088 0.7058200  817.9024
+    ## 129      50  823.8326 0.7971366  613.0166
+    ## 135      50  850.1954 0.7836406  642.4933
+    ## 141      50  926.1564 0.7475168  698.4195
+    ## 183      50 1017.7690 0.7169125  748.3007
+    ## 189      50 1039.9709 0.7043163  815.1766
+    ## 195      50 1015.5571 0.7037265  762.8304
+    ## 39       50 1346.0669 0.7471591 1094.3286
+    ## 45       50 1394.9319 0.6961076 1121.3996
+    ## 51       50 1490.8615 0.6386966 1221.4050
+    ## 93       50  885.9912 0.7693983  674.1026
+    ##       RMSESD RsquaredSD    MAESD
+    ## 1   440.9783  0.1834976 380.3937
+    ## 7   437.8481  0.1800401 376.2288
+    ## 13  439.3542  0.1964264 377.1830
+    ## 55  449.3361  0.2211759 387.6212
+    ## 61  446.3774  0.2380493 393.7440
+    ## 67  442.1167  0.2281016 379.1468
+    ## 109 463.2205  0.2418361 384.0845
+    ## 115 475.8461  0.2332997 398.1312
+    ## 121 461.7321  0.2006551 370.3603
+    ## 163 495.8165  0.2062646 319.5746
+    ## 169 419.2481  0.1954505 302.6508
+    ## 175 506.5066  0.1955738 311.2826
+    ## 19  436.4646  0.2519722 374.0822
+    ## 25  440.0394  0.2392077 375.6094
+    ## 31  441.0713  0.2127665 377.5358
+    ## 73  440.8231  0.2745850 365.0622
+    ## 79  431.2868  0.2153511 372.3197
+    ## 85  463.5571  0.2246847 393.7310
+    ## 127 456.3068  0.2242809 342.1818
+    ## 133 470.9635  0.2410335 347.3677
+    ## 139 456.4361  0.2182772 355.2300
+    ## 181 541.0843  0.2832854 265.3273
+    ## 187 519.1630  0.2110840 320.1337
+    ## 193 545.9383  0.2276455 316.4049
+    ## 37  441.2479  0.2466120 377.2038
+    ## 43  437.7998  0.2598331 373.5161
+    ## 49  445.4215  0.2142416 382.5937
+    ## 91  442.9871  0.2227119 372.9798
+    ## 97  441.8444  0.2473283 368.4267
+    ## 103 445.1993  0.2412969 372.1569
+    ## 145 497.5893  0.2331622 382.6872
+    ## 151 504.1716  0.2555715 387.7342
+    ## 157 457.4155  0.2291420 358.2197
+    ## 199 438.3339  0.1951326 344.8926
+    ## 205 502.8649  0.2051077 287.4413
+    ## 211 478.1923  0.1838290 295.2947
+    ## 2   443.6200  0.1882681 382.5511
+    ## 8   440.0093  0.1952010 374.9397
+    ## 14  442.7726  0.1886268 379.8948
+    ## 56  451.5488  0.2419673 376.5573
+    ## 62  465.1891  0.2361267 395.4094
+    ## 68  463.3439  0.2259299 388.7201
+    ## 110 478.7939  0.2367708 344.8311
+    ## 116 499.7482  0.2390980 352.8624
+    ## 122 502.4026  0.2287608 351.4445
+    ## 164 481.4659  0.2058602 288.7009
+    ## 170 467.8978  0.1815433 309.9667
+    ## 176 534.0404  0.1972225 310.9599
+    ## 20  434.3040  0.2482526 370.2111
+    ## 26  443.0337  0.2433688 378.4059
+    ## 32  443.6572  0.2360609 378.5669
+    ## 74  488.9440  0.2699999 368.6739
+    ## 80  437.0612  0.2162230 348.0272
+    ## 86  478.3075  0.2310248 387.4831
+    ## 128 480.9870  0.2119577 304.8383
+    ## 134 477.9463  0.2162875 297.2213
+    ## 140 498.5665  0.2337796 325.5837
+    ## 182 426.6795  0.2634332 197.1654
+    ## 188 492.9904  0.2369770 278.3578
+    ## 194 553.8268  0.2036867 281.5605
+    ## 38  439.4862  0.2457508 374.0469
+    ## 44  446.2149  0.2574742 379.4655
+    ## 50  448.3623  0.2279003 382.9759
+    ## 92  465.7892  0.2419910 373.1940
+    ## 98  483.5974  0.2626322 364.7410
+    ## 104 458.2367  0.2524116 360.6070
+    ## 146 508.0404  0.2236111 335.9226
+    ## 152 521.5565  0.2223390 333.9491
+    ## 158 454.3146  0.1980973 326.8805
+    ## 200 429.3222  0.1528214 349.3564
+    ## 206 517.1196  0.2158605 275.8814
+    ## 212 476.0952  0.1609138 287.9469
+    ## 3   447.5474  0.2118105 383.3453
+    ## 9   445.3032  0.2084539 380.4595
+    ## 15  447.9496  0.1927351 378.5909
+    ## 57  499.8809  0.2408720 347.3668
+    ## 63  484.5572  0.2432496 328.9943
+    ## 69  498.7401  0.2398224 347.8217
+    ## 111 517.8387  0.2271497 299.3981
+    ## 117 530.0316  0.2191002 309.6610
+    ## 123 518.3888  0.2193380 320.2081
+    ## 165 543.3643  0.1922905 325.1174
+    ## 171 435.0876  0.1945968 285.0281
+    ## 177 517.9751  0.1946718 289.2531
+    ## 21  440.5833  0.2421263 369.0889
+    ## 27  450.5728  0.2470567 381.6069
+    ## 33  449.9475  0.2300592 377.3582
+    ## 75  518.7853  0.2361153 314.3426
+    ## 81  468.8935  0.2051380 278.5264
+    ## 87  516.5845  0.2291281 321.1973
+    ## 129 492.7924  0.1713255 258.8761
+    ## 135 517.3921  0.1809714 263.1004
+    ## 141 517.7355  0.2159693 302.1202
+    ## 183 445.8731  0.2666152 216.9403
+    ## 189 451.3496  0.2442897 243.4572
+    ## 195 511.0557  0.2015988 251.2089
+    ## 39  442.8002  0.2412364 369.8053
+    ## 45  455.9821  0.2513606 383.0420
+    ## 51  453.2926  0.2441862 379.8627
+    ## 93  521.9182  0.2351862 330.6798
+    ##  [ reached 'max' / getOption("max.print") -- omitted 116 rows ]
 
 Now, we make predictions on the test data sets using the best model
 fits. Then we compare RMSE to determine the best model.
@@ -940,7 +940,7 @@ postResample(boostPred, dayTest$cnt)
 ```
 
     ##        RMSE    Rsquared         MAE 
-    ## 805.8514004   0.8896831 664.9933563
+    ## 531.8885054   0.9041153 438.2067865
 
 When we compare the two models, the boosted tree model has lower RMSE
 values when applied on the test dataset. Hence, the boosted tree model

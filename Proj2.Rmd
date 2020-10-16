@@ -178,7 +178,7 @@ day <- select(day, -weekday,-holiday,-workingday,-dteday,-temp, -instant)
 ## Model Building
 
 First we split the data into train and test sets.
-```{r data_split}
+```{r data_split, results="hide"}
 set.seed(23)
 dayIndex<- createDataPartition(day$cnt, p = 0.7, list=FALSE)
 dayTrain <- day[dayIndex, ]
@@ -189,14 +189,18 @@ fitTree <- train(cnt~ ., data = dayTrain, method = "rpart",
               preProcess = c("center", "scale"), 
               trControl = trainControl(method = "loocv", number = 10), tuneGrid = data.frame(cp = 0.01:0.10))
 
-# Display information from the tree fit
-fitTree$results
 
 # Build a boosted tree model using cv
 fitBoost <- train(cnt~., data = dayTrain, method = "gbm", 
               preProcess = c("center", "scale"), 
               trControl = trainControl(method = "cv", number = 10), 
-              tuneGrid = expand.grid(n.trees=c(10,20),shrinkage=c(0.01,0.05),n.minobsinnode =c(3),interaction.depth=c(1,5)))
+              tuneGrid = expand.grid(n.trees=c(10,20,50,100,500,1000),shrinkage=c(0.01,0.05,0.1,0.5),n.minobsinnode =c(3,5,10),interaction.depth=c(1,5,10)))
+
+
+```
+```{r}
+# Display information from the tree fit
+fitTree$results
 
 # Display information from the boost fit
 fitBoost$results
