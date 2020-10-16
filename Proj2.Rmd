@@ -5,7 +5,7 @@ date: "10/16/2020"
 output:
   rmarkdown::github_document: default
 params:
-  days: 1
+  days: "Monday"
 ---
 
 ```{r setup, include=FALSE}
@@ -16,6 +16,7 @@ library(corrplot)
 library(caret)
 library(rmarkdown)
 library(dplyr)
+library(tidyverse)
 ```
 
 
@@ -36,6 +37,8 @@ Next, we will remove the *casual* and *registered* variables since the `cnt` var
 
 ```{r var}
 day1 <- select(day1, -casual, -registered) 
+day1$weekday <- as.factor(day1$weekday)
+levels(day1$weekday) <- c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
 day <- filter(day1, weekday == params$days)
 
 #Check for missing values
@@ -55,6 +58,7 @@ day$workingday <- as.factor(day$workingday)
 day$weekday <- as.factor(day$weekday)
 day$yr <- as.factor(day$yr)
 day$mnth <- as.factor(day$mnth)
+
 levels(day$season) <- c("winter", "spring", "summer", "fall")
 levels(day$yr) <- c("2011", "2012")
 str(day)
