@@ -196,7 +196,8 @@ fitBoost <- train(cnt~., data = dayTrain, method = "gbm",
               trControl = trainControl(method = "cv", number = 10), 
               tuneGrid = expand.grid(n.trees=c(10,20,50,100,500,1000),shrinkage=c(0.01,0.05,0.1,0.5),n.minobsinnode =c(3,5,10),interaction.depth=c(1,5,10)))
 
-
+# Adding a linear regression model part 2!
+FitLinear <- train(cnt~ atemp + mnth*season, data = dayTrain, method = "lm", trControl = trainControl(method = "cv", number = 10))
 ```
 ```{r}
 # Display information from the tree fit
@@ -204,6 +205,9 @@ fitTree$results
 
 # Display information from the boost fit
 fitBoost$results
+
+# Display information from the linear model fit
+FitLinear$results
 ```
 
 Now, we make predictions on the test data sets using the best model fits. Then we compare RMSE to determine the best model.
@@ -213,6 +217,9 @@ postResample(predTree, dayTest$cnt)
 
 boostPred <- predict(fitBoost, newdata = select(dayTest, -cnt))
 postResample(boostPred, dayTest$cnt)
+
+linearPred <- predict(FitLinear, newdata = select(dayTest, -cnt))
+postResample(linearPred, dayTest$cnt)
 
 ```
 
